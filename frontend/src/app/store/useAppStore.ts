@@ -21,7 +21,7 @@ interface AppState {
 
   error: string | null;
   history: HistoryEntry[];
-
+  clearError: () => void;    
 
   setFile: (f: File | null) => void;
   uploadAndAnalyze: () => Promise<void>;
@@ -96,6 +96,7 @@ export const useAppStore = create<AppState>()(
       clearUploadState: () =>
         set({ file: null, progressResult: null, finalResult: null, error: null }),
 
+      clearError: () => set({ error: null }),
 
       generateReport: async () => {
         set({ isGenerating: true, error: null });

@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { useAppStore } from '../../app/store/useAppStore';
 import { FileUploader } from '../../shared/components/FileUploader';
 import { AnalyticsResult as AnalyticsResultComponent } from '../../shared/components/AnalyticsResult/AnalyticsResult';
 import { Button } from '../../shared/components/Button/Button';
+import { ErrorBanner } from '../../shared/components/ErrorBanner/ErrorBanner';
 import styles from './HomePage.module.css';
 
 export const HomePage = () => {
@@ -10,24 +12,33 @@ export const HomePage = () => {
     setFile,
     isParsing,
     error,
+    clearError,
     progressResult,
-    uploadAndAnalyze,
     finalResult,
+    uploadAndAnalyze,
     clearUploadState,
   } = useAppStore();
 
+  const isFileSelected = !!file;
+
   const handleUpload = () => {
-    if (file) {
-      uploadAndAnalyze();
-    }
+    if (!file) return;
+    clearError();
+    uploadAndAnalyze();
   };
 
-  const isFileSelected = Boolean(file);
+  useEffect(() => {
+    if (!error) return;
+    const t = setTimeout(clearError, 5000);
+    return () => clearTimeout(t);
+  }, [error, clearError]);
 
   return (
     <div className={styles.container}>
+      <ErrorBanner msg={error ?? ''} onClose={clearError} />
+
       <p className={styles.title}>
-        Загрузите csv‑файл и получите полную информацию о нём за сверхнизкое время
+        Загрузите CSV-файл и получите аналитику за считанные секунды
       </p>
 
       <FileUploader file={file} setFile={setFile} clearUploadState={clearUploadState} />
@@ -38,29 +49,15 @@ export const HomePage = () => {
           onClick={handleUpload}
           disabled={!isFileSelected || isParsing}
         >
-          {isParsing ? 'Парсим...' : 'Отправить'}
+          {isParsing ? 'Парсим…' : 'Отправить'}
         </Button>
-
-        {/*
-        <Button
-          variant="secondary"
-          onClick={clearUploadState}
-          disabled={isLoading}
-        >
-          Очистить
-        </Button>
-        */}
       </div>
-
-      {error && <p style={{ color: 'var(--error-color)' }}>Error: {error}</p>}
 
       {(isParsing || progressResult) && (
         <AnalyticsResultComponent result={progressResult} />
       )}
 
-      {/* {!isLoading && finalResult && (
-        <AnalyticsResultComponent result={finalResult}  />
-      )} */}
+      {finalResult && !isParsing && <AnalyticsResultComponent result={finalResult} />}
     </div>
   );
 };
