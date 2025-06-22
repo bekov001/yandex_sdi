@@ -1,0 +1,44 @@
+/* AnalyticsResult.module.css */
+
+.container {
+  padding-bottom: 30px;
+  
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; 
+  /* padding: 20px; */
+  /* background-color: #f8f0fc; Light purple background matching the image */
+  border-radius: 10px;
+}
+
+.gridItem {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+}
+
+.gridItem strong {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.gridItem span {
+  font-size: 0.9em; 
+  color: #666;
+}

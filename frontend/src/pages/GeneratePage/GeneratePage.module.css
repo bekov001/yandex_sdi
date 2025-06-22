@@ -1,0 +1,14 @@
+.pageContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.text {
+    margin-bottom: 10px;
+}
+.hint {
+    font-size: 10px;
+    margin-top: 10px;
+}

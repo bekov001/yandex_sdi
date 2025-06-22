@@ -1,0 +1,9 @@
+.main {
+    background-color: #FCE2FF;
+    min-height: 100vh;
+}
+
+.container {
+    margin-left: 5%;
+    width: 90%;
+}

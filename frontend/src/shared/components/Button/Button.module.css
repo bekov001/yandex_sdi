@@ -1,0 +1,66 @@
+.button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* Для случаев, если используется как ссылка */
+}
+
+.download {
+  background-color: #FCE300;
+}
+.button:active {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  background-color: #555;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.clear {
+  background-color: #201B10;
+  color: white;
+  padding: 10px;
+  margin-left: 5px;
+}
+.ready {
+  background-color: #2AE881;
+}
+
+.disabled {
+  background-color: #C0C0C0;
+}
+.primary:not(:disabled):hover {
+  background-color: var(--primary-hover-color);
+}
+
+.secondary {
+  background-color: transparent;
+  color: var(--text-secondary-color);
+  border: 1px solid var(--border-color);
+}
+
+.secondary:not(:disabled):hover {
+  background-color: var(--surface-color);
+  border-color: var(--text-secondary-color);
+  color: var(--text-color);
+}
+
+
+.danger {
+  background-color: var(--error-color);
+  color: var(--text-color);
+}
+
+.danger:not(:disabled):hover {
+  opacity: 0.85;
+}

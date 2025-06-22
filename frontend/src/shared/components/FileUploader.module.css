@@ -1,0 +1,82 @@
+.uploader {
+  width: 100%;
+  height: 12rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-width: 2px;
+  border-style: dashed;
+  border-radius: 0.75rem; 
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  border-color: #D8B4FE; 
+}
+
+.uploaderInitial {
+  background-color: #EACDFF; 
+  border-color: #D1D5DB;
+}
+
+.uploaderInitial:hover {
+  border-color: #A78BFA;
+  background-color: #D4FAE6;
+}
+
+.uploaderDragging {
+  border-color: #8B5CF6;
+  background-color: #F3E8FF;
+}
+
+.uploaderFileSelected {
+  background-color: #E9D5FF;
+  border-color: #A78BFA;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.fileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #6B21A8;
+}
+
+.fileIcon {
+  font-size: 3.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.fileName {
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.fileSize {
+  font-size: 0.875rem;
+  color: #6B7280;
+}
+
+.initialContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #374151;
+}
+
+.uploadText {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #6B46C1;
+  text-align: center;
+}
+
+.dragText {
+  font-size: 0.875rem;
+  color: #6B7280;
+  text-align: center;
+}
