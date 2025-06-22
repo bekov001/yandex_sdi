@@ -1,36 +1,36 @@
 .uploader {
   width: 100%;
-  height: 12rem; 
+  height: 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-width: 2px;
   border-style: dashed;
-  border-radius: 0.75rem; 
+  border-radius: 0.75rem;
   cursor: pointer;
   transition: all 300ms ease-in-out;
-  border-color: #D8B4FE; 
+  border-color: #d8b4fe;
 }
 
 .uploaderInitial {
-  background-color: #EACDFF; 
-  border-color: #D1D5DB;
+  background-color: #eacdff;
+  border-color: #d1d5db;
 }
 
 .uploaderInitial:hover {
-  border-color: #A78BFA;
-  background-color: #D4FAE6;
+  border-color: #a78bfa;
+  background-color: #d4fae6;
 }
 
 .uploaderDragging {
-  border-color: #8B5CF6;
-  background-color: #F3E8FF;
+  border-color: #8b5cf6;
+  background-color: #f3e8ff;
 }
 
 .uploaderFileSelected {
-  background-color: #E9D5FF;
-  border-color: #A78BFA;
+  background-color: #e9d5ff;
+  border-color: #a78bfa;
 }
 
 .hiddenInput {
@@ -41,7 +41,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #6B21A8;
+  color: #6b21a8;
 }
 
 .fileIcon {
@@ -57,7 +57,7 @@
 
 .fileSize {
   font-size: 0.875rem;
-  color: #6B7280;
+  color: #6b7280;
 }
 
 .initialContent {
@@ -71,12 +71,12 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
-  color: #6B46C1;
+  color: #6b46c1;
   text-align: center;
 }
 
 .dragText {
   font-size: 0.875rem;
-  color: #6B7280;
+  color: #6b7280;
   text-align: center;
 }

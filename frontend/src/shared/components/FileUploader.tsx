@@ -52,7 +52,9 @@ export const FileUploader = ({ file, setFile, clearUploadState }: FileUploaderPr
     styles.uploader,
     isDragging ? styles.uploaderDragging : styles.uploaderInitial,
     file ? styles.uploaderFileSelected : '',
-  ].join(' ').trim();
+  ]
+    .join(' ')
+    .trim();
 
   return (
     <div
@@ -76,10 +78,7 @@ export const FileUploader = ({ file, setFile, clearUploadState }: FileUploaderPr
           <p className={styles.fileName}>
             Selected file: <strong>{file.name}</strong>
             <span className={styles.fileSize}> ({(file.size / 1024).toFixed(2)} KB)</span>
-            <Button
-              onClick={handleClearClick}
-              variant='clear'
-            >
+            <Button onClick={handleClearClick} variant="clear">
               &times;
             </Button>
           </p>

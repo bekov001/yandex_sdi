@@ -5,7 +5,7 @@ const API_BASE_URL = 'http://localhost:3000';
 export async function uploadFile(
   file: File,
   onProgress: (snap: AnalyticsSnapshot) => void,
-  rows = 10_000
+  rows = 10_000,
 ): Promise<AnalyticsSnapshot> {
   const form = new FormData();
   form.append('file', file);
@@ -19,12 +19,12 @@ export async function uploadFile(
     throw new Error(`Aggregate failed (${resp.status} ${resp.statusText})`);
   }
 
-  const reader  = resp.body.getReader();
+  const reader = resp.body.getReader();
   const decoder = new TextDecoder();
 
   let lastSnap: AnalyticsSnapshot = {
-    total_spend_galactic:   0,
-    rows_affected:          0,
+    total_spend_galactic: 0,
+    rows_affected: 0,
     average_spend_galactic: 0,
   };
 
@@ -56,13 +56,11 @@ interface GenerateOptions {
   maxSpend?: number;
 }
 
-export async function requestTestReport(
-  options: GenerateOptions = {}
-): Promise<Blob> {
+export async function requestTestReport(options: GenerateOptions = {}): Promise<Blob> {
   const params = new URLSearchParams({
-    size:       String(options.sizeGB     ?? 1),
-    withErrors: (options.withErrors ? 'on' : 'off'),
-    maxSpend:   String(options.maxSpend   ?? 1_000),
+    size: String(options.sizeGB ?? 1),
+    withErrors: options.withErrors ? 'on' : 'off',
+    maxSpend: String(options.maxSpend ?? 1_000),
   });
 
   const resp = await fetch(`${API_BASE_URL}/report?${params.toString()}`);
@@ -72,10 +70,10 @@ export async function requestTestReport(
 }
 
 export function downloadBlob(blob: Blob, name = 'intergalactic-report.csv') {
-  const url    = URL.createObjectURL(blob);
-  const a      = document.createElement('a');
-  a.href       = url;
-  a.download   = name;
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = name;
   document.body.appendChild(a);
   a.click();
   a.remove();

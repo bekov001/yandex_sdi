@@ -37,9 +37,7 @@ export const HomePage = () => {
     <div className={styles.container}>
       <ErrorBanner msg={error ?? ''} onClose={clearError} />
 
-      <p className={styles.title}>
-        Загрузите CSV-файл и получите аналитику за считанные секунды
-      </p>
+      <p className={styles.title}>Загрузите CSV-файл и получите аналитику за считанные секунды</p>
 
       <FileUploader file={file} setFile={setFile} clearUploadState={clearUploadState} />
 
@@ -53,9 +51,7 @@ export const HomePage = () => {
         </Button>
       </div>
 
-      {(isParsing || progressResult) && (
-        <AnalyticsResultComponent result={progressResult} />
-      )}
+      {(isParsing || progressResult) && <AnalyticsResultComponent result={progressResult} />}
 
       {finalResult && !isParsing && <AnalyticsResultComponent result={finalResult} />}
     </div>

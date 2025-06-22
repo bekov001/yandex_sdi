@@ -3,26 +3,32 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 import type { AnalyticsSnapshot, HistoryEntry } from '../../shared/types';
-import {
-  uploadFile,
-  requestTestReport,
-  downloadBlob,
-} from '../../api/analyticsAPI';
+import { uploadFile, requestTestReport, downloadBlob } from '../../api/analyticsAPI';
+
+/**
+ * Safely extracts a human‑readable message from unknown error‑like inputs.
+ */
+function getErrorMessage(err: unknown): string {
+  return err instanceof Error ? err.message : String(err);
+}
 
 interface AppState {
-
+  /* ===== Upload ===== */
   file: File | null;
   isParsing: boolean;
   progressResult: AnalyticsSnapshot | null;
-  finalResult:    AnalyticsSnapshot | null;
+  finalResult: AnalyticsSnapshot | null;
 
+  /* ===== CSV generator ===== */
   isGenerating: boolean;
   reportBlob: Blob | null;
 
+  /* ===== Status / History ===== */
   error: string | null;
   history: HistoryEntry[];
-  clearError: () => void;    
+  clearError: () => void;
 
+  /* ===== Actions ===== */
   setFile: (f: File | null) => void;
   uploadAndAnalyze: () => Promise<void>;
 
@@ -38,7 +44,7 @@ interface AppState {
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
-
+      /* ===== State ===== */
       file: null,
       isParsing: false,
       isGenerating: false,
@@ -48,9 +54,8 @@ export const useAppStore = create<AppState>()(
       reportBlob: null,
       history: [],
 
-
-      setFile: (file) =>
-        set({ file, error: null, progressResult: null, finalResult: null }),
+      /* ===== Mutators ===== */
+      setFile: (file) => set({ file, error: null, progressResult: null, finalResult: null }),
 
       uploadAndAnalyze: async () => {
         const { file } = get();
@@ -59,30 +64,25 @@ export const useAppStore = create<AppState>()(
         set({ isParsing: true, error: null, progressResult: null, finalResult: null });
 
         try {
-          let lastSnap: AnalyticsSnapshot | null = null;
-
+          // Получаем финальный снапшот и одновременно стримим прогресс в стор
           const full: AnalyticsSnapshot = await uploadFile(file, (snap) => {
-            lastSnap = snap;
             set({ progressResult: snap });
           });
 
-          const bad =
-            !lastSnap ||
-            (lastSnap as AnalyticsSnapshot).rows_affected === 0 ||
-            (lastSnap as AnalyticsSnapshot).total_spend_galactic == null;
+          const isBad = full.rows_affected === 0 || full.total_spend_galactic == null;
 
-          const status: HistoryEntry['status'] = bad ? 'fail' : 'success';
+          const status: HistoryEntry['status'] = isBad ? 'fail' : 'success';
 
           set({ finalResult: full });
           get().addHistoryEntry({ fileName: file.name, status, ...full });
 
-          if (bad) {
+          if (isBad) {
             set({ error: 'Сервер не смог посчитать метрики — проверьте CSV' });
           }
-        } catch (e: any) {
-          set({ error: e.message });
+        } catch (err) {
+          set({ error: getErrorMessage(err) });
           get().addHistoryEntry({
-            fileName: file.name,
+            fileName: file?.name ?? 'unknown',
             status: 'fail',
             total_spend_galactic: 0,
             rows_affected: 0,
@@ -103,8 +103,8 @@ export const useAppStore = create<AppState>()(
         try {
           const blob = await requestTestReport();
           set({ reportBlob: blob });
-        } catch (e: any) {
-          set({ error: e.message });
+        } catch (err) {
+          set({ error: getErrorMessage(err) });
         } finally {
           set({ isGenerating: false });
         }
@@ -127,14 +127,13 @@ export const useAppStore = create<AppState>()(
         set((s) => ({ history: [newEntry, ...s.history] }));
       },
 
-      removeHistoryEntry: (id) =>
-        set((s) => ({ history: s.history.filter((h) => h.id !== id) })),
+      removeHistoryEntry: (id) => set((s) => ({ history: s.history.filter((h) => h.id !== id) })),
 
       clearHistory: () => set({ history: [] }),
     }),
     {
       name: 'analyticsHistory',
       partialize: (s) => ({ history: s.history }),
-    }
-  )
+    },
+  ),
 );

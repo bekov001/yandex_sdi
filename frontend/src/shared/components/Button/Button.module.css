@@ -5,7 +5,9 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease-in-out,
+    transform 0.1s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +15,7 @@
 }
 
 .download {
-  background-color: #FCE300;
+  background-color: #fce300;
 }
 .button:active {
   transform: scale(0.98);
@@ -27,17 +29,17 @@
 }
 
 .clear {
-  background-color: #201B10;
+  background-color: #201b10;
   color: white;
   padding: 10px;
   margin-left: 5px;
 }
 .ready {
-  background-color: #2AE881;
+  background-color: #2ae881;
 }
 
 .disabled {
-  background-color: #C0C0C0;
+  background-color: #c0c0c0;
 }
 .primary:not(:disabled):hover {
   background-color: var(--primary-hover-color);
@@ -54,7 +56,6 @@
   border-color: var(--text-secondary-color);
   color: var(--text-color);
 }
-
 
 .danger {
   background-color: var(--error-color);

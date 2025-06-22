@@ -42,6 +42,6 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
         {children}
       </div>
     </div>,
-    modalRoot
+    modalRoot,
   );
 };

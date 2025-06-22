@@ -2,7 +2,6 @@
 
 .container {
   padding-bottom: 30px;
-  
 }
 
 .title {
@@ -13,7 +12,7 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px; 
+  gap: 20px;
   /* padding: 20px; */
   /* background-color: #f8f0fc; Light purple background matching the image */
   border-radius: 10px;
@@ -29,7 +28,7 @@
   align-items: center;
   text-align: center;
   min-height: 100px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .gridItem strong {
@@ -39,6 +38,6 @@
 }
 
 .gridItem span {
-  font-size: 0.9em; 
+  font-size: 0.9em;
   color: #666;
 }

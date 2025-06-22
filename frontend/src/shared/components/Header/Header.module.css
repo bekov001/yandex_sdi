@@ -10,23 +10,33 @@
 .logo_container {
   display: flex;
   align-items: center;
-  
 }
-.logo { font-family: Roboto;
-font-weight: 500;
-font-size:15px;
-line-height: 90%;
-letter-spacing: 0%;
-text-transform: uppercase;
- background-color:#CB81FF;
-padding: 3px; 
-margin-left: 10px;}
-.nav { display: flex; gap: 1.5rem; }
-.link { color: var(--text-secondary-color); text-decoration: none; transition: color 0.2s; }
-.link:hover { color: var(--text-color); }
+.logo {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 90%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  background-color: #cb81ff;
+  padding: 3px;
+  margin-left: 10px;
+}
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+.link {
+  color: var(--text-secondary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.link:hover {
+  color: var(--text-color);
+}
 .activeLink {
   color: var(--primary-color);
-  text-decoration: none;             
+  text-decoration: none;
   border-bottom: 2px solid currentColor;
-  padding-bottom: 5px; 
+  padding-bottom: 5px;
 }

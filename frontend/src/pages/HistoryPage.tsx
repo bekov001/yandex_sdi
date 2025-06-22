@@ -14,8 +14,6 @@ export const HistoryPage = () => {
 
   return (
     <div>
-
-
       <HistoryList
         history={history}
         onItemClick={setSelectedEntry}
@@ -24,15 +22,15 @@ export const HistoryPage = () => {
       <Button onClick={clearHistory} disabled={history.length === 0} variant="download">
         Очистить историю
       </Button>
-      <Button onClick={() => navigate('/generate')} variant="ready" style={{ marginTop:'10px', marginLeft: '1rem' , marginBottom: '1rem' }}>
+      <Button
+        onClick={() => navigate('/generate')}
+        variant="ready"
+        style={{ marginTop: '10px', marginLeft: '1rem', marginBottom: '1rem' }}
+      >
         Сгенерировать больше
       </Button>
       <Modal isOpen={!!selectedEntry} onClose={() => setSelectedEntry(null)}>
-        {selectedEntry && (
-          <AnalyticsResult
-            result={selectedEntry}
-          />
-        )}
+        {selectedEntry && <AnalyticsResult result={selectedEntry} />}
       </Modal>
     </div>
   );
