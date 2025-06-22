@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppStore } from '../../app/store/useAppStore';
-import { FileUploader } from '../../shared/components/FileUploader';
+import { FileUploader } from '../../shared/components/FileUploader/FileUploader';
 import { AnalyticsResult as AnalyticsResultComponent } from '../../shared/components/AnalyticsResult/AnalyticsResult';
 import { Button } from '../../shared/components/Button/Button';
 import { ErrorBanner } from '../../shared/components/ErrorBanner/ErrorBanner';

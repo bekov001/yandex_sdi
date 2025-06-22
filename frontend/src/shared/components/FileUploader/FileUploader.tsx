@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styles from './FileUploader.module.css';
-import { Button } from './Button/Button';
+import { Button } from '../Button/Button';
+// import { Button } from './Button/Button';
 
 interface FileUploaderProps {
   file: File | null;

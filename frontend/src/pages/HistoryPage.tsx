@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../app/store/useAppStore';
-import { HistoryList } from '../shared/components/HistoryList';
-import { Modal } from '../shared/components/Modal';
+import { HistoryList } from '../shared/components/HistoryList/HistoryList';
+import { Modal } from '../shared/components/Modal/Modal';
 import { AnalyticsResult } from '../shared/components/AnalyticsResult/AnalyticsResult';
 import { Button } from '../shared/components/Button/Button';
 import { HistoryEntry } from '../shared/types';

@@ -1,6 +1,6 @@
 import React from 'react';
-import { HistoryEntry } from '../types';
-import { Button } from './Button/Button';
+import { HistoryEntry } from '../../types';
+import { Button } from '../Button/Button';
 import styles from './HistoryList.module.css';
 
 interface HistoryListProps {
